@@ -1,0 +1,67 @@
+:root {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/e/e5/France_champion_of_the_Football_World_Cup_Russia_2018.jpg");
+    font-size: 100%;
+}
+
+* {
+    font-family: fantasy;
+    font-size: 50px;
+    color: #110f0f;
+}
+
+.container {
+    margin-top: 150px;
+    margin-left: 230px;
+    background-color: rgba(240, 248, 255, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1280px;
+    padding: 32px;
+    width: 100%;
+}
+
+.container > * {
+    width: 100%;
+}
+
+/* Num. of Question, Timer and Score Styling */
+#property {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 200px;
+}
+
+.upper {
+    font-weight: bold;
+    text-align: center;
+    font-size: 35px;
+}
+
+.down {
+    text-align: center;
+}
+
+/* Question Styling */
+#question {
+
+    margin-bottom: 50px;
+    margin-top: -50px;
+}
+
+/* Choice Styling */
+.choice-text , .choice-option , .choice{
+    display: inline-block;
+    margin-bottom: 30px;
+    width: max-content;
+    font-size: 50px;
+    font-weight: bold;
+    border: 10px  rgb(255, 255, 255, 1);
+    padding: 15px;
+    background-color: #ffffff;
+}
+.choice:hover {
+    cursor: grab;
+    transform: translateY(-5px);
+    transition: transform 1ms;
+}

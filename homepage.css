@@ -1,0 +1,42 @@
+:root {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/e/e5/France_champion_of_the_Football_World_Cup_Russia_2018.jpg");
+    font-size: 100%;
+}
+
+.contain > * {
+    background-color: rgb(44, 0, 85, 0.7);
+
+}
+
+.welcome {
+    font-family: fantasy;
+    font-size: 50px;
+    color: #110f0f;
+    margin-top: 200px;
+    margin-bottom: -100px;
+    margin-left: 400px;
+    color: cornsilk;
+    
+}
+
+.Intro {
+    margin-top: 300px;
+    margin-left: 600px;
+
+}
+
+.inputUser {
+    font-family: fantasy;
+    font-size: 50px;
+    color: #110f0f;
+    margin-bottom: 30px;
+
+}
+
+.playButton {
+    font-family: fantasy;
+    font-size: 50px;
+    color: #110f0f;
+    margin-left: 170px;
+
+}

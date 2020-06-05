@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Cup-Quiz</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="container">
+        <div id="gameplay" class="justify-center flex-column">
+            <div id="property">
+                <div id="property-question">
+                    <p class="upper">Question</p>
+                    <h1 id="nextQuestion">1/10</h1>
+                </div>
+                <div id="property-score">
+                    <p class="upper">Score</p>
+                    <h1 id="score" class="down">0</h1>
+                </div>
+            </div>
+            <h2 id="question">Who is the winner of 1998 World Cup?</h2>
+            <div class="choice">
+                <p class="choice-option">A.</p>
+                <p class="choice-text" data-number="1">Brazil</p>
+            </div>
+            <div class="choice">
+                <p class="choice-option">B.</p>
+                <p class="choice-text" data-number="2">France</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+    const question = document.getElementById('question')
+    const choices = Array.from(document.getElementsByClassName('choice-text'))
+
+    const nextQuestion = document.getElementById('nextQuestion')
+    const scoreUpdate = document.getElementById('score')
+    const scorePoint = 10
+    const limit = 10
+
+    let currentQuestion = {}
+    let acceptingAnswers = false
+    
+    let listQuestions = [
+        {
+            question: 'Which country is the winner of 1998 World Cup?',
+            choice1: 'Brazil',
+        choice2: 'France',
+        Ans: 2
+    },
+    {    
+        question: 'Which country hosted the 2002 World Cup?',
+        choice1: 'Korea-Japan',
+        choice2: 'Germany',
+        Ans: 1
+    },
+    {
+        question: 'When did last time England won the World Cup?',
+        choice1: '1990',
+        choice2: '1966',
+        Ans: 2
+    },
+    {
+        question: 'Which country that held the record for the most champions in World Cup?',
+        choice1: 'Brazil',
+        choice2: 'Italy',
+        Ans: 1
+    },
+    {
+        question: 'Who is the top goalscorer in World Cup history?',
+        choice1: 'Pele',
+        choice2: 'Miroslav Klose',
+        Ans: 2
+    },
+    {
+        question: 'Which country is the winner of 2006 World Cup?',
+        choice1: 'Germany',
+        choice2: 'Italy',
+        Ans: 2
+    },
+    {
+        question: 'Who is the youngest goalscorer in World Cup history?',
+        choice1: 'Diego Maradona',
+        choice2: 'Pele',
+        Ans: 2
+    },
+    {
+        question: 'How many times did Italy won the World Cup?',
+        choice1: '4',
+        choice2: '5',
+        Ans: 1
+    },
+    {
+        question: 'Which country is Cristiano Ronaldo comes from?',
+        choice1: 'Spain',
+        choice2: 'Portugal',
+        Ans: 2
+    },
+    {
+        question: 'First country who won the World Cup?',
+        choice1: 'Uruguay',
+        choice2: 'United States',
+        Ans: 1
+    },
+    {
+        question: 'How many times did World Cup has been held?',
+        choice1: '23',
+        choice2: '21',
+        Ans: 2
+    },
+    {
+        question: 'Who scored the remarkable "Hand of God" goal in 1986 World Cup?',
+        choice1: 'David Beckham',
+        choice2: 'Diego Maradona',
+        Ans: 2
+    },
+    {
+        question: 'Who is the Best Player in 2018 World Cup?',
+        choice1: 'Luka Modric',
+        choice2: 'Kylian Mbappe',
+        Ans: 1
+    },
+    {
+        question: 'Which player never win the World Cup?',
+        choice1: 'Toni Kroos',
+        choice2: 'Lionel Messi',
+        Ans: 2
+    },
+    {
+        question: 'Who is the current most expensive football player?',
+        choice1: 'Neymar Jr.',
+        choice2: 'Cristiano Ronaldo',
+        Ans: 1
+    }
+    ]
+
+    let score = 0
+    let counter = 0
+    let availableQuestions = []
+
+    function startGame () {    
+    
+        counter = 0
+        score = 0
+        availableQuestions = [...listQuestions]
+        newQuestion()
+    
+    }
+
+    choices.forEach(choice => {
+        
+        choice.addEventListener('click', a => {
+            
+            if (!acceptingAnswers) return
+            
+            acceptingAnswers = false
+            
+            const selectedChoice = a.target
+            
+            const selectedAnswer = selectedChoice.dataset['number']
+            
+            const classToApply = Number(selectedAnswer) === Number(currentQuestion.Ans) ? 'correct' : 'incorrect'
+            
+            if (classToApply === 'correct') {           
+                
+                score += scorePoint
+                scoreUpdate.innerHTML = score
+        
+            } 
+        
+            selectedChoice.parentElement.classList.add(classToApply)
+                                        
+            selectedChoice.parentElement.classList.remove(classToApply)
+                                        
+            newQuestion()            
+        })
+        
+    })
+
+    function newQuestion () {
+
+        if (availableQuestions.length === 0 || counter >= limit) {        
+
+            if (score > 90) {
+
+                alert(`Your score is ${JSON.stringify(score)}!! You must be a football fanatic! Reload the page to play again`)
+            
+            }else if (score >= 60) {
+        
+                alert(`Great! You got ${JSON.stringify(score)}. Reload the page to play again`)
+    
+            }else if (score <= 50) {
+        
+                alert(`Uups! You only got ${JSON.stringify(score)}. Improve your football knowledge first :) . Reload the page to play again`)
+            }
+    
+        }
+        else {
+        
+            counter++
+        
+            nextQuestion.innerHTML = `${counter}/${limit}`
+        
+            const randomQuestion = Math.floor(Math.random() * availableQuestions.length)
+            currentQuestion = availableQuestions[randomQuestion]
+            question.innerHTML = currentQuestion.question
+        
+            choices.forEach(choice => { 
+        
+                const number = choice.dataset['number']
+                choice.innerHTML = currentQuestion['choice' + number]
+        
+            })
+            availableQuestions.splice(randomQuestion, 1)
+            acceptingAnswers = true
+        }
+            
+    }
+
+    startGame()
+
+    </script>
+</body>
+</html>
