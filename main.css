@@ -7,9 +7,10 @@
     font-family: fantasy;
     font-size: 50px;
     color: #110f0f;
+    position: relative;
 }
 
-.container {
+#container {
     margin-top: 150px;
     margin-left: 230px;
     background-color: rgba(240, 248, 255, 0.5);
@@ -17,15 +18,14 @@
     justify-content: center;
     align-items: center;
     max-width: 1280px;
-    padding: 32px;
+    padding: 40px;
+}
+
+#container > * {
     width: 100%;
 }
 
-.container > * {
-    width: 100%;
-}
-
-/* Num. of Question, Timer and Score Styling */
+/* Number of Question, Timer and Score Styling */
 #property {
     display: flex;
     justify-content: space-between;
@@ -56,8 +56,7 @@
     width: max-content;
     font-size: 50px;
     font-weight: bold;
-    border: 10px  rgb(255, 255, 255, 1);
-    padding: 15px;
+    padding: 10px;
     background-color: #ffffff;
 }
 .choice:hover {
